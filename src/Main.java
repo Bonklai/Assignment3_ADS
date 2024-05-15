@@ -11,7 +11,8 @@ public class Main {
             Person person = new Person("Person" + i);
             myHashTable.put(new MyTestingClass(age),person);
         }
-        System.out.println("Bucket sizes");
+
+
         for(int i =0;i<myHashTable.getM();i++){
             int c = 0;
             MyHashTable.HashNode<MyTestingClass,Person> node = myHashTable.getChainarray()[i];
@@ -20,7 +21,6 @@ public class Main {
                 node=node.next;
             }
             System.out.println("Bucket "+i+": "+c);
-
         }
     }
 
