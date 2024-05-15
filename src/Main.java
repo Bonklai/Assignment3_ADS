@@ -1,17 +1,27 @@
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        MyHashTable<String,Integer> myHashTable = new MyHashTable<>();
-        myHashTable.put("Daulet",19);
-        myHashTable.put("Baha",20);
-        myHashTable.put("Lalala",200);
-        System.out.println(myHashTable.get("Lalala"));
-        System.out.println(myHashTable.contains(19));
-        System.out.println(myHashTable.remove("Daulet"));
-        System.out.println(myHashTable.get("Daulet"));
+        MyHashTable<MyTestingClass,Person> myHashTable = new MyHashTable<>();
+        Random random = new Random();
+        for (int i=0;i<10000;i++){
+            String age = "AGE" + random.nextInt(10000);
+            Person person = new Person("Person" + i);
+            myHashTable.put(new MyTestingClass(age),person);
+        }
+        System.out.println("Bucket sizes");
+        for(int i =0;i<myHashTable.getM();i++){
+            int c = 0;
+            MyHashTable.HashNode<MyTestingClass,Person> node = myHashTable.getChainarray()[i];
+            while(node!=null){
+                c++;
+                node=node.next;
+            }
+            System.out.println("Bucket "+i+": "+c);
 
+        }
     }
 
 
